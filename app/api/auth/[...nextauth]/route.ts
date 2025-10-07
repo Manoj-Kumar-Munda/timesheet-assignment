@@ -7,17 +7,18 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
+        email: {},
+        password: {},
       },
 
       async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) {
+        if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing username or password");
         }
+        console.log({ credentials });
 
         if (
-          credentials.username === user.username &&
+          credentials.email === user.email &&
           credentials.password === user.password
         ) {
           return user;
