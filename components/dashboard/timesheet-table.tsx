@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import { ITimesheetData, type Status } from "@/data/mock-data";
+import Link from "next/link";
 
 const formatDuration = (startDate: string, endDate: string) => {
   const startDateObj = new Date(startDate);
@@ -109,9 +110,12 @@ const TimesheetTable = ({
                 </span>
               </TableCell>
               <TableCell>
-                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                <Link
+                  href={`/tasks?startDate=${timesheet.startDate}&endDate=${timesheet.endDate}`}
+                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                >
                   {getAction(timesheet.status)}
-                </button>
+                </Link>
               </TableCell>
             </TableRow>
           ))}
