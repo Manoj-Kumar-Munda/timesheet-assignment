@@ -1,4 +1,4 @@
-import { user } from "@/data/user";
+import { user } from "@/data/mock-data";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
