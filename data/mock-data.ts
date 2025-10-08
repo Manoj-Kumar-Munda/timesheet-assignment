@@ -54,6 +54,20 @@ const timesheetData: ITimesheetData[] = [
     status: getStatus(0),
     totalWorkedHours: 0,
   },
+  {
+    week: "6",
+    startDate: new Date("2024-02-02").toISOString(),
+    endDate: new Date("2024-02-06").toISOString(),
+    status: getStatus(0),
+    totalWorkedHours: 0,
+  },
+  {
+    week: "7",
+    startDate: new Date("2024-02-07").toISOString(),
+    endDate: new Date("2024-02-11").toISOString(),
+    status: getStatus(0),
+    totalWorkedHours: 0,
+  },
 ];
 
 export interface ITaskData {

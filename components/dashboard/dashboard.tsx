@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentTimesheetData, setCurrentTimesheetData] =
-    useState<ITimesheetData[]>(timesheetData);
+    useState<ITimesheetData[]>([]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
