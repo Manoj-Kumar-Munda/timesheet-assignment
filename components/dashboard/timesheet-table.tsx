@@ -111,7 +111,9 @@ const TimesheetTable = ({
               </TableCell>
               <TableCell>
                 <Link
-                  href={`/tasks?startDate=${timesheet.startDate}&endDate=${timesheet.endDate}`}
+                  href={`/tasks?startDate=${
+                    timesheet.startDate.split("T")[0]
+                  }&endDate=${timesheet.endDate.split("T")[0]}`}
                   className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                 >
                   {getAction(timesheet.status)}
