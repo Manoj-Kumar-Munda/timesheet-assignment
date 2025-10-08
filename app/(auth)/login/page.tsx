@@ -2,7 +2,7 @@ import { LoginForm } from "./login-form";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen w-full h-full flex">
+    <div className="min-h-screen w-full h-full flex text-white">
       <LoginForm />
 
       <div className="bg-blue-600  basis-1/2  flex-col justify-center gap-3 px-10 hidden md:flex">

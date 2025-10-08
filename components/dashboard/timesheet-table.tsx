@@ -69,7 +69,7 @@ const TimesheetTable = ({
               </TableCell>
               <TableCell>
                 <Link
-                  href={`/tasks?startDate=${
+                  href={`/dashboard/tasks?startDate=${
                     timesheet.startDate.split("T")[0]
                   }&endDate=${timesheet.endDate.split("T")[0]}`}
                   className="text-blue-600 hover:text-blue-800 text-sm font-medium"
