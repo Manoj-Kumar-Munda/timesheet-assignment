@@ -15,7 +15,7 @@ const handler = NextAuth({
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing username or password");
         }
-        console.log({ credentials });
+        // console.log({ credentials });
 
         if (
           credentials.email === user.email &&
@@ -50,8 +50,15 @@ const handler = NextAuth({
       }
       return session;
     },
+
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 });
 
 export { handler as GET, handler as POST };

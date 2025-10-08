@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function LoginForm() {
@@ -9,6 +9,7 @@ export function LoginForm() {
   const [password, setPassword] = useState("123456");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ export function LoginForm() {
         setError("Invalid username or password");
         setIsLoading(false);
       } else if (result?.ok) {
-        window.location.href = "/dashboard";
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error(error);
