@@ -31,7 +31,8 @@ export function LoginForm() {
       } else if (result?.ok) {
         window.location.href = callbackUrl;
       }
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError("An unexpected error occurred. Please try again.");
       setIsLoading(false);
     }

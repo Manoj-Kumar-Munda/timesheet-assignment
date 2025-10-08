@@ -46,7 +46,7 @@ export default function TasksPage() {
       {/* Header */}
       <div className="flex justify-between">
         <div className="flex flex-col gap-5">
-          <h2 className="text-xl font-bold">This week's timesheet</h2>
+          <h2 className="text-xl font-bold">This week&apos;s timesheet</h2>
           <span className="text-gray-400 text-sm">21 - 26 January, 2024</span>
         </div>
         <div className="flex flex-col gap-4">
