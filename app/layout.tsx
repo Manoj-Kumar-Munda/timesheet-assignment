@@ -28,7 +28,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="flex-1 bg-gray-100 flex flex-col">
-            <div className="flex-1 flex flex-col my-4">
+            <div className="flex-1 flex flex-col my-4 px-4 lg:px-0">
               <div className="lg:w-4/5 mx-auto w-full  bg-white rounded-lg shadow-2xs px-4 py-6 flex flex-col">
                 {children}
               </div>
