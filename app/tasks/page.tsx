@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import TaskRow from "./task-row";
 import { useMemo } from "react";
 
-export default function Week() {
+export default function TasksPage() {
   const searchParams = useSearchParams();
   const startDate = searchParams.get("startDate") || "";
   const endDate = searchParams.get("endDate") || "";
@@ -21,7 +21,8 @@ export default function Week() {
           );
         })
         .reduce((acc, task) => {
-          const date = new Date(task.date).toLocaleDateString();
+          const dateObj = new Date(task.date);
+          const date = `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
           if (!acc[date]) {
             acc[date] = [];
           }
@@ -39,7 +40,14 @@ export default function Week() {
     [tasksGroupByDate]
   );
 
-  console.log({ tasksGroupByDate, totalWorkedHours });
+  const formattedDate = (date: string) => {
+    const dateObj = new Date(date);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[dateObj.getMonth()];
+    const day = dateObj.getDate();
+    return `${month} ${day}`;
+  };
 
   return (
     <section>
@@ -68,28 +76,23 @@ export default function Week() {
 
       <div className="flex flex-col gap-4">
         {Object.entries(tasksGroupByDate).map(([date, tasks]) => (
-          <>
-            <div className="flex gap-4 my-4">
-              <div className="w-28">
-                <span className="font-semibold text-sm">
-                  {new Date(date).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-
-              <div className="grow flex flex-col gap-4">
-                {tasks.map((task) => (
-                  <TaskRow key={task.id} task={task} />
-                ))}
-                <button className="w-full bg-blue-100 text-blue-800 py-2.5 border border-dashed border-blue-800 rounded-md flex items-center justify-center gap-2">
-                  <Plus className="h-4 w-4" />
-                  <span className="text-sm font-medium">Add new task</span>
-                </button>
-              </div>
+          <div className="flex gap-4 my-4" key={date}>
+            <div className="w-28">
+              <span className="font-semibold text-sm">
+                {formattedDate(date)}
+              </span>
             </div>
-          </>
+
+            <div className="grow flex flex-col gap-4">
+              {tasks.map((task) => (
+                <TaskRow key={task.id} task={task} />
+              ))}
+              <button className="w-full bg-blue-100 text-blue-800 py-2.5 border border-dashed border-blue-800 rounded-md flex items-center justify-center gap-2">
+                <Plus className="h-4 w-4" />
+                <span className="text-sm font-medium">Add new task</span>
+              </button>
+            </div>
+          </div>
         ))}
       </div>
     </section>
