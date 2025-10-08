@@ -24,6 +24,7 @@ export function LoginForm() {
       });
 
       if (result?.error) {
+        console.log(result.error);
         setError("Invalid username or password");
         setIsLoading(false);
       } else if (result?.ok) {
