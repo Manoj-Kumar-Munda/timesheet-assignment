@@ -1,4 +1,4 @@
-import { getStatus } from "@/lib/utils";
+import { getStatus } from "@/utils/utils";
 
 export const user = {
   id: "1",

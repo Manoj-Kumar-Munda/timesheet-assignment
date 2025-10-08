@@ -10,51 +10,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { ITimesheetData, type Status } from "@/data/mock-data";
+import { ITimesheetData } from "@/data/mock-data";
 import Link from "next/link";
-
-const formatDuration = (startDate: string, endDate: string) => {
-  const startDateObj = new Date(startDate);
-  const endDateObj = new Date(endDate);
-  const startDateMonth = startDateObj.getMonth();
-  const endDateMonth = endDateObj.getMonth();
-  if (startDateMonth === endDateMonth) {
-    return `${startDateObj.getDate()} - ${endDateObj.getDate()} ${startDateObj.toLocaleString(
-      "default",
-      { month: "long" }
-    )} ${startDateObj.getFullYear()}`;
-  } else {
-    return `${startDateObj.getDate()} ${startDateObj.toLocaleString("default", {
-      month: "long",
-    })} - ${endDateObj.getDate()} ${endDateObj.toLocaleString("default", {
-      month: "long",
-    })} ${endDateObj.getFullYear()}`;
-  }
-};
-
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "COMPLETED":
-      return "bg-green-100 text-green-800";
-    case "INCOMPLETE":
-      return "bg-yellow-100 text-yellow-800";
-    case "MISSING":
-      return "bg-red-100 text-red-800";
-    default:
-      return "bg-gray-100 text-gray-800";
-  }
-};
-
-const getAction = (status: Status) => {
-  switch (status) {
-    case "COMPLETED":
-      return "View";
-    case "INCOMPLETE":
-      return "Update";
-    default:
-      return "Create";
-  }
-};
+import { formatDuration, getAction, getStatusColor } from "@/utils/utils";
 
 const TimesheetTable = ({
   timesheetData,

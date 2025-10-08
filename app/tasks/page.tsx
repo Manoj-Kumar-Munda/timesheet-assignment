@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import TaskRow from "./task-row";
 import { useMemo } from "react";
+import { formattedDate } from "@/utils/utils";
 
 export default function TasksPage() {
   const searchParams = useSearchParams();
@@ -39,15 +40,6 @@ export default function TasksPage() {
       }, 0),
     [tasksGroupByDate]
   );
-
-  const formattedDate = (date: string) => {
-    const dateObj = new Date(date);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const month = months[dateObj.getMonth()];
-    const day = dateObj.getDate();
-    return `${month} ${day}`;
-  };
 
   return (
     <section>
